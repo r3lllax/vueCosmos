@@ -1,5 +1,19 @@
 <script setup>
+  import {inject} from "vue";
+  import ApiFetch from "@/helpers/apiFetch.js";
+  import {useRouter} from "vue-router";
+  import apiFetch from "@/helpers/apiFetch.js";
 
+  const isAuth = inject('token')
+  const router = useRouter()
+  const UpdateToken = inject('updateToken')
+
+  const Logout  = async () =>{
+    await apiFetch("get","/logout")
+
+    UpdateToken(null)
+    await router.replace('/authorization')
+  }
 </script>
 
 <template>
@@ -20,16 +34,20 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <RouterLink to="/authorization" class="text-sm font-semibold leading-6 text-gray-900">Авторизация</RouterLink>
-        <RouterLink to="/registration" class="text-sm font-semibold leading-6 text-gray-900">Регистрация</RouterLink>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Заказ на Луне</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Гагарин</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Миссии</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Рейсы</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Поиск</a>
+        <template v-if="!isAuth">
+          <RouterLink to="/authorization" class="text-sm font-semibold leading-6 text-gray-900">Авторизация</RouterLink>
+          <RouterLink to="/registration" class="text-sm font-semibold leading-6 text-gray-900">Регистрация</RouterLink>
+        </template>
+        <template v-if="isAuth">
+          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Заказ на Луне</a>
+          <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Гагарин</RouterLink>
+          <RouterLink to="/missions" class="text-sm font-semibold leading-6 text-gray-900">Миссии</RouterLink>
+          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Рейсы</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Поиск</a>
+        </template>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Выход <span aria-hidden="true">&rarr;</span></a>
+        <a href="#" v-if="isAuth" @click.prevent="Logout()" class="text-sm font-semibold leading-6 text-gray-900">Выход <span aria-hidden="true">&rarr;</span></a>
       </div>
     </nav>
   </header>

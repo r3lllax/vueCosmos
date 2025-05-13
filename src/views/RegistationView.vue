@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import apiFetch from "@/helpers/apiFetch.js";
 import ErrorDescription from "@/components/ErrorDescription.vue";
+import {useRouter} from "vue-router";
 
 const form = ref({
   data:{
@@ -16,7 +17,7 @@ const form = ref({
   isProcess:false,
 
 })
-
+const router = useRouter()
 const SendData = async ()=>{
   if(form.value.isProcess){return;}
   form.value.isProcess=true
@@ -25,12 +26,14 @@ const SendData = async ()=>{
   if(result.error){
     form.value.errors=result.error.errors
   }
+  if(result.data){
+    router.replace('/authorization')
+  }
   form.value.isProcess=false
 }
 </script>
 
 <template>
-  {{form}}
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=sky&shade=600" alt="Your Company">
