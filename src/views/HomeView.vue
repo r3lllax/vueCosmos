@@ -128,6 +128,6 @@ onMounted(async ()=>{
 
       </div>
     </div>
-    <a class="items-center flex justify-center bg-sky-500 text-white py-2 px-2 rounded shadow-md text-xs hover:bg-sky-600" href="">К списку миссий</a>
+    <RouterLink to="/missions" class="items-center flex justify-center bg-sky-500 text-white py-2 px-2 rounded shadow-md text-xs hover:bg-sky-600" href="">К списку миссий</RouterLink>
   </div>
 </template>

@@ -14,9 +14,6 @@ import apiFetch from "@/helpers/apiFetch.js";
   })
 
   const open = mission =>{
-    console.log(user_id)
-    console.log(mission.mission.author.id)
-    console.log(user_id==mission.mission.author.id)
     missions.value.forEach(mission =>{
         mission.is_open = false;
     })
