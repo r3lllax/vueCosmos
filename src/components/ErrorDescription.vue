@@ -10,12 +10,13 @@
     if(error!==undefined){
         error = error.map(function (elem){
           let index = elem.indexOf('field')
-          elem = elem.slice(index,elem.length)
-          elem = elem.replace("f","F")
+          if(index>=0){
+            elem = elem.slice(index,elem.length)
+            elem = elem.replace("f","F")
+          }
           return elem
       })
     }
-    console.log(error)
     return error
   }
 
@@ -23,6 +24,6 @@
 
 <template>
   <div class="invalid-description" v-if="error">
-    {{ParseError(error).join(' ')}}
+    {{ParseError(error).join(', ')}}
   </div>
 </template>
