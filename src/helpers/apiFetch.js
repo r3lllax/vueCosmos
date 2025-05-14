@@ -12,6 +12,7 @@ export default async function(method,route,body = null){
         options.headers['Content-Type']='application/json'
         options.body = JSON.stringify(body)
     }
+
     const response = await fetch(`https://project/apicosmos${route}`,options)
     if(response.status===401){
         localStorage.removeItem('user_token')

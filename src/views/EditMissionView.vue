@@ -27,7 +27,8 @@ onMounted(async function (){
 
 const SendForm = async ()=>{
   form.value.errors = []
-  const responce = await apiFetch("PUT",`/lunar-missions/${id}`, {
+  const responce = await apiFetch("POST",`/lunar-missions/${id}`, {
+    _method:"patch",
     mission:form.value.data
   })
   if(responce.code==403 || responce.code==404){
