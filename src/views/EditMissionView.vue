@@ -30,6 +30,9 @@ const SendForm = async ()=>{
   const responce = await apiFetch("PUT",`/lunar-missions/${id}`, {
     mission:form.value.data
   })
+  if(responce.code==403 || responce.code==404){
+    router.replace('/missions')
+  }
   if(responce.error){
     form.value.errors = responce.error.errors
   }

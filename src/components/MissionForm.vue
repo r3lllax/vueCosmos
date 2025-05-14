@@ -4,7 +4,6 @@ import ErrorDescription from "@/components/ErrorDescription.vue";
 const props = defineProps({
   form:Object,
 })
-
 const getError = key=>{
   return props.form.errors[`mission.${key}`]
 }
