@@ -43,9 +43,9 @@ import apiFetch from "@/helpers/apiFetch.js";
             <i class="fa  text-xl" :class="{'fa-angle-down':mission.is_open,'fa-angle-left':!mission.is_open}"  aria-hidden="true"></i>
           </button>
           <template v-if="user_id==mission.mission.author.id">
-            <button>
+            <RouterLink :to="`/edit-mission/${mission.mission.id}`">
               <i class="fa fa-edit text-xl" aria-hidden="true"></i>
-            </button>
+            </RouterLink>
             <button @click.prevent="remove(mission)">
               <i class="fa fa-trash text-xl text-red-500" aria-hidden="true"></i>
             </button>

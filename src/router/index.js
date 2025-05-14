@@ -5,6 +5,7 @@ import RegistationView from "@/views/RegistationView.vue";
 import AuthorizationView from "@/views/AuthorizationView.vue";
 import MissionsView from "@/views/MissionsView.vue";
 import AddMissionView from "@/views/AddMissionView.vue";
+import EditMissionView from "@/views/EditMissionView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,13 +35,22 @@ const router = createRouter({
         forAuth:true
       },
       component: MissionsView,
-    },{
+    },
+    {
       path: '/add-mission',
       name: 'add-mission',
       meta:{
         forAuth:true
       },
       component: AddMissionView,
+    },
+    {
+      path: '/edit-mission/:id',
+      name: 'edit-mission',
+      meta:{
+        forAuth:true
+      },
+      component: EditMissionView,
     },
 
   ],
