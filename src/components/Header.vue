@@ -43,7 +43,7 @@
           <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Гагарин</RouterLink>
           <RouterLink to="/missions" class="text-sm font-semibold leading-6 text-gray-900">Миссии</RouterLink>
           <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Рейсы</RouterLink>
-          <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Поиск</RouterLink>
+          <RouterLink to="/search" class="text-sm font-semibold leading-6 text-gray-900">Поиск</RouterLink>
         </template>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">

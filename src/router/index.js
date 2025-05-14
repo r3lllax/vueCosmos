@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TestView from "@/views/RegistationView.vue";
 import RegistationView from "@/views/RegistationView.vue";
+import SearchView from "@/views/SearchView.vue";
 import AuthorizationView from "@/views/AuthorizationView.vue";
 import MissionsView from "@/views/MissionsView.vue";
 import AddMissionView from "@/views/AddMissionView.vue";
@@ -51,6 +52,14 @@ const router = createRouter({
         forAuth:true
       },
       component: EditMissionView,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      meta:{
+        forAuth:true
+      },
+      component: SearchView,
     },
 
   ],
