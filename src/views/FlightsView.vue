@@ -5,9 +5,11 @@ import router from "@/router/index.js";
 const flights = ref([])
 
 onMounted(async function (){
-  flights.value = await apiFetch("get","/space-flights")
+  loadFlights()
 })
-
+const loadFlights = async ()=>{
+  flights.value = await apiFetch("get","/space-flights")
+}
 const modalOpen = ref(false)
 const modalMessage = ref('')
 
@@ -26,10 +28,11 @@ const BookFlight = async (fl_number)=>{
     modalOpen.value = true
     modalMessage.value = "Рейс не найден"
   }
+  loadFlights()
 }
 const closeBtn = () =>{
   modalOpen.value = false
-  location.reload()
+
 }
 </script>
 
