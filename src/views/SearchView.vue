@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import apiFetch from "@/helpers/apiFetch.js";
 import MissionItem from "@/components/MissionItem.vue";
+import CompactMissionItem from "@/components/CompactMissionItem.vue";
 
 
 const searchQuery = ref('')
@@ -9,7 +10,6 @@ const missions = ref([])
 const search = async ()=>{
   const responce = await apiFetch("GET",`/search?query=${searchQuery.value}`)
   missions.value = responce.data
-  console.log(missions.value)
 
 }
 </script>
@@ -36,6 +36,6 @@ const search = async ()=>{
   </div>
 
   <div class="container mt-10 sm:mx-auto sm:w-full sm:max-w-2xl" v-if="missions">
-    <MissionItem v-for="mission in missions" :compact="true" :mission="mission" />
+    <CompactMissionItem v-for="mission in missions" :compact="true" :mission="mission" />
   </div>
 </template>

@@ -7,7 +7,6 @@ const token = inject('token')
 const gagarin = ref()
 onMounted(async ()=>{
   gagarin.value= await apiFetch("GET","/gagarin-flight")
-  console.log(gagarin)
 })
 </script>
 

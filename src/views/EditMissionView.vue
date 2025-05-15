@@ -21,7 +21,6 @@ const form = ref({
 onMounted(async function (){
   const responce = await apiFetch("GET",`/lunar-missions/${id}`)
   form.value.data = responce.mission
-  console.log(form.value.data)
 })
 
 

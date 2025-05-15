@@ -4,25 +4,23 @@ import {inject, ref} from "vue";
 
 const props = defineProps({
   mission:Object,
-  compact:Boolean,
+
 })
 defineEmits(['open,remove'])
-let user_id = inject('user_id')
+const user_id = inject('user_id')
 const mission = ref({
   mission:null
 })
-mission.value.mission =props.mission
-console.log(mission)
-console.log()
+mission.value.mission =props.mission.mission
 </script>
 
 <template>
 
   <div class="px-4 mb-10 sm:px-0 bg-white shadow-xl rounded">
     <div class="flex justify-between w-full items-center p-6" >
-      <h2 class="text-base font-semibold leading-7 text-sky-600 text-xl">{{ mission.mission.name}}</h2>
-      <div class="flex gap-4" v-if="!compact">
-        <button @click.prevent="$emit('open',mission)">
+      <h2 class="text-base font-semibold leading-7 text-sky-600 text-xl">{{ mission.mission.name }}</h2>
+      <div class="flex gap-4">
+        <button @click.prevent="$emit('open', mission)">
           <i class="fa  text-xl" :class="{'fa-angle-down':mission.is_open,'fa-angle-left':!mission.is_open}"  aria-hidden="true"></i>
         </button>
         <template v-if="user_id==mission.mission.author.id">
@@ -35,39 +33,39 @@ console.log()
         </template>
       </div>
     </div>
-    <div class="px-6" v-if="compact || mission.is_open">
-      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{{ mission?.mission?.launch_details?.launch_date?? mission?.launch_date}}</p>
-      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{{ mission?.mission?.launch_details?.landing_date?? mission?.landing_date}}</p>
+    <div class="px-6" v-if="mission.is_open">
+      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{{ mission.mission.launch_details.launch_date}}</p>
+      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{{ mission.mission.landing_details.landing_date}}</p>
       <div class="mt-6 border-t border-gray-100">
         <dl class="divide-y divide-gray-100">
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="!compact">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Место запуска</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.launch_details.launch_site.name}}</dd>
           </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="!compact">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Широта</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.launch_details.launch_site.location.latitude}}</dd>
           </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="!compact">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Долгота</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.launch_details.launch_site.location.longitude}}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Место посадки</dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission?.mission?.landing_details?.landing_site?.name?? mission?.landing_site}}</dd>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.landing_details.landing_site.name}}</dd>
           </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="!compact">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Широта</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.landing_details.landing_site.coordinates.latitude}}</dd>
           </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="!compact">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Долгота</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ mission.mission.landing_details.landing_site.coordinates.longitude}}</dd>
           </div>
         </dl>
       </div>
-      <h2 class="my-6 text-xl text-sky-600" v-if="!compact">Информация о космическом корабле</h2>
-      <div class="px-4 sm:px-0" v-if="!compact">
+      <h2 class="my-6 text-xl text-sky-600">Информация о космическом корабле</h2>
+      <div class="px-4 sm:px-0">
         <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Лунный модуль: {{ mission.mission.spacecraft.lunar_module}}</p>
         <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Управляющий модуль: {{ mission.mission.spacecraft.command_module}}</p>
       </div>

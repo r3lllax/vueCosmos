@@ -16,11 +16,11 @@ import MissionItem from "@/components/MissionItem.vue";
   })
 
   const open = mission =>{
-    missions.value.forEach(mission =>{
-        mission.is_open = false;
-    })
+    // missions.value.forEach(mission =>{
+    //     mission.is_open = false;
+    // })
 
-    mission.is_open = true
+    mission.is_open = !mission.is_open
   }
   const remove = async mission =>{
 
